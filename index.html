@@ -1,55 +1,56 @@
-    <!DOCTYPE html>
-    <html lang="id">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <title>Latihan Kalimat Bisindo</title>
-        <style>
-            body {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                background-color: #f8f9fa;
-                font-family: 'Comic Sans MS', cursive, sans-serif;
-            }
-            h1 {
-                font-size: clamp(2em,5.3vw,8vh);
-                margin-bottom: 30px;
-                text-align: center;
-            }
-            .btn-custom {
-                font-size: clamp(1em,1.5vh,2vh);
-            }
-        </style>
-    </head>
-    <body>
-        <h1 id="kalimat">Latihan Kalimat Bisindo!</h1>
-        <button class="btn btn-outline-dark btn-custom" id="generate-button">Buat kalimat!</button>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Latihan Kalimat Bisindo</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            font-family: 'Comic Sans MS', sans-serif;
+            
+        }
+        h1 {
+            font-size: clamp(2em,5.3vw,8vh);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .btn-custom {
+            font-size: clamp(1em,1.5vh,2vh);
+        }
+    </style>
+</head>
+<body>
+    <h1 id="kalimat">Latihan Kalimat Bisindo!</h1>
+    <button class="btn btn-outline-dark btn-custom" id="generate-button">Buat kalimat!</button>
 
-        <script>
-            let kalimatList = [];
+    <script>
+        let kalimatList = [];
 
-            fetch('kalimat.txt')
-                .then(response => response.text())
-                .then(data => {
-                    // Pisahkan kalimat berdasarkan garis baru
-                    kalimatList = data.trim().split("\n");
-                })
-                .catch(error => console.error('Error fetching file:', error));
+        fetch('kalimat.txt')
+            .then(response => response.text())
+            .then(data => {
+                // Pisahkan kalimat berdasarkan garis baru
+                kalimatList = data.trim().split("\n");
+            })
+            .catch(error => console.error('Error fetching file:', error));
 
-            // Fungsi untuk generate kalimat acak
-            document.getElementById('generate-button').onclick = function() {
-                if (kalimatList.length > 0) {
-                    const randomIndex = Math.floor(Math.random() * kalimatList.length);
-                    const randomKalimat = kalimatList[randomIndex];
-                    document.getElementById('kalimat').textContent = `${randomKalimat}`;
-                } else {
-                    document.getElementById('kalimat').textContent = "Gagal mengambil kalimat.";
-                }
-            };
-        </script>
-    </body>
-    </html>
+        // Fungsi untuk generate kalimat acak
+        document.getElementById('generate-button').onclick = function() {
+            if (kalimatList.length > 0) {
+                const randomIndex = Math.floor(Math.random() * kalimatList.length);
+                const randomKalimat = kalimatList[randomIndex];
+                document.getElementById('kalimat').textContent = `${randomKalimat}`;
+            } else {
+                document.getElementById('kalimat').textContent = "Gagal mengambil kalimat.";
+            }
+        };
+    </script>
+</body>
+</html>
